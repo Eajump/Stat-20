@@ -1,0 +1,114 @@
+---
+title: "Lab Sept 10 Stat 20"
+author: "Beth Jump"
+date: "9/9/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Ch 13, C7: A fair coin is tossed 3 times
+#### a. what is the chance of getting 3 heads?
+```{r}
+(1/2)*(1/2)*(1/2)
+```
+
+#### b. what is the chance of not getting 3 heads?
+```{r}
+1-((1/2)*(1/2)*(1/2))
+```
+
+#### c. what is the chance of getting at least 1 tail?
+```{r}
+# same as 1- prob(no tails)
+1-((1/2)*(1/2)*(1/2))
+```
+
+#### d. what is the chance of getting at least 1 head?
+```{r}
+# same as 1- prob(no heads)
+1-((1/2)*(1/2)*(1/2))
+```
+
+### Based on Ch 13, D4: 
+#### 2 draws are made at random without replacement from a standard deck of cards. The first card is lost and nobody knows what was written on it. True or false: the 2 draws are independent.
+```{r}
+# false, the draws are not independent
+```
+
+### Ch 14, A1: 
+#### two fair dice are thrown. What is the chance that the sum is 5?
+```{r}
+# four possible ways to make 5 - 1:4, 2:3, 3:2, 4:1
+# total combinations is 36
+4/36
+```
+
+### Ch 14, A3: 
+#### a pair of fair dice is thrown 1,000 times. What total should appear most often? What totals should appear least often?
+```{r}
+# 7 should appear most often
+# 2 and 12 should appear least often
+```
+
+### Based on Ch 14, C1 & C2: 
+#### everyone in the class gets a well-shuffled deck of cards. Each student will win a prize if either the top card is the ace of hearts or the second card is the king of hearts.
+#### a. what fraction of the class is expected to have the ace of hearts come up first?
+```{r}
+1/52
+```
+
+#### b. what fraction of the class is expected to have the king of hearts come up second?
+```{r}
+1/52
+```
+
+#### c. what fraction of the class is expected to win a prize?
+```{r}
+(1/52)+(1/52)-(1/52*1/51)
+```
+
+#### d. for parts d-f, suppose instead that a student will win the prize if either the top card is the ace of hearts or the second card is the ace of hearts. What fraction of the class is expected to have the ace of hearts from up first?
+```{r}
+1/52
+```
+
+#### e. what fraction of the class is expected to have the ace of hearts come up second?
+```{r}
+1/52
+```
+
+#### f. what fraction of the class is expected to win a prize?
+```{r}
+1/52+1/52
+```
+
+### Ch 15, A5: 
+#### A coin is tossed 10 times. Find the chance of getting exactly 5 heads. Find the chance of getting between 4 and 6 heads, inclusive. Compute your answer as a decimal using R as a calculator with the function choose() and the binomial formula. Check your answers using R and the dbinom() function.
+```{r}
+# five heads 
+choose(10,5)*(1/2)^5 * (1/2)^5
+dbinom(5, size = 10, prob = 1/2)
+
+# 4-6 heads
+choose(10,4)*(1/2)^4 * (1/2)^6 + choose(10,5)*(1/2)^5 * (1/2)^5 + choose(10,6)*(1/2)^6 * (1/2)^4
+dbinom(4:6, size = 10, prob = 1/2)
+sum(dbinom(4:6, size = 10, prob = 1/2))
+
+# to get the full distribution of probabilities
+dbinom(0:10, size = 10, prob = 1/2)
+sum(dbinom(0:10, size = 10, prob = 1/2))
+```
+
+### Ch 15, A6: 
+#### It is claimed that a vitamin supplement helps kangaroos learn to run a special maze with high walls. To test whether this is true, 20 kangaroos are divided up into 10 pairs. In each pair, one kangaroo is selected at random to receive the vitamin supplement; the other is fed a normal diet. The kangaroos are then timed as they learn to run the maze. In 7 out of 10 pairs, the treated kangaroo learns to run the maze more quickly than its untreated partner. If in fact the vitamin supplement has no effect, each animal is equally likely to be quicker. What is the chance that 7 or more of the 10 treated kangaroos would learn the maze more quickly than their untreated partners, just by chance? As in the previous problem, compute the answer both using the binomial formula and choose() and using dbinom().
+```{r}
+# using choose
+choose(10,7)*(1/2)^7 * (1/2)^3 + choose(10,8)*(1/2)^8 * (1/2)^2 + choose(10,9)*(1/2)^9 * (1/2)^1 +
+choose(10,10)*(1/2)^10 * (1/2)^0
+
+# using dbinom
+sum(dbinom(7:10, size = 10, prob = 1/2))
+```

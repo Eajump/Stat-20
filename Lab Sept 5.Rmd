@@ -1,0 +1,40 @@
+---
+title: "Stat 20 Sept 5 Lab"
+author: "Beth Jump"
+date: "9/5/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### R: Simulation
+##### 1. Suppose now we want to simulate drawing three tickets without replacement from a box with five tickets marked 1, 3, 5, 15, 27. How would you do this using R since we don’t actually have a box? Assign the result to a vector x.
+```{r}
+x <- sample(x = c(1,3,5,15,27), size = 3, replace = F)
+```
+
+##### 2. Suppose you want to know whether the last value in x is bigger than 10. Using x, write a line of code that will return TRUE if the value is bigger than 10. Recall that x[2] will give you the second value in the vector x.
+```{r}
+x[3] > 10
+```
+
+##### 3. We can simulate a coin toss by creating a vector using c(“H”, “T”). (Remember if you are using objects that are not numbers, you have to put them in quotes.) This is nice, but not as useful, since we usually want to count the number of heads or the number of tails. So simulate a coin toss, marking 1 for heads and 0 for tails.
+```{r}
+sample(0:1, 1, T)
+```
+
+##### 4. Now simulate the result of 10 flips of a fair coin, and count the number of heads. How many heads do you expect to see? How many do you actually see? Do it again.
+```{r}
+sample(0:1,10,T)
+```
+
+##### 5. Repeat this exercise, but suppose the coin has a 1/10 chance of getting heads, do the simulation 1000 times, and find the proportion of tosses that are heads. To construct a coin that has a 1/10 chance of getting heads, you may want to use the rep() function. The first argument is what you want to repeat, the second argument is the number of times you want to repeat it. Note that the result from this simulation should be close to 0.1.
+```{r}
+# get the vector of outcomes
+y = replicate(sample(0:1,10,T, c(9/10, 1/10)), n=1000)
+
+# count the number of 1's and divide by the total number of tosses (10*1000) to get the proportion of heads
+sum(y)/10000
+```

@@ -9,48 +9,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Ch 13, C7: A fair coin is tossed 3 times
-#### a. what is the chance of getting 3 heads?
-```{r}
-(1/2)*(1/2)*(1/2)
-```
-
-#### b. what is the chance of not getting 3 heads?
-```{r}
-1-((1/2)*(1/2)*(1/2))
-```
-
-#### c. what is the chance of getting at least 1 tail?
-```{r}
-# same as 1- prob(no tails)
-1-((1/2)*(1/2)*(1/2))
-```
-
-#### d. what is the chance of getting at least 1 head?
-```{r}
-# same as 1- prob(no heads)
-1-((1/2)*(1/2)*(1/2))
-```
-
 ### Based on Ch 13, D4: 
 #### 2 draws are made at random without replacement from a standard deck of cards. The first card is lost and nobody knows what was written on it. True or false: the 2 draws are independent.
 ```{r}
 # false, the draws are not independent
-```
-
-### Ch 14, A1: 
-#### two fair dice are thrown. What is the chance that the sum is 5?
-```{r}
-# four possible ways to make 5 - 1:4, 2:3, 3:2, 4:1
-# total combinations is 36
-4/36
-```
-
-### Ch 14, A3: 
-#### a pair of fair dice is thrown 1,000 times. What total should appear most often? What totals should appear least often?
-```{r}
-# 7 should appear most often
-# 2 and 12 should appear least often
 ```
 
 ### Based on Ch 14, C1 & C2: 

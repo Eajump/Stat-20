@@ -1,0 +1,52 @@
+---
+title: "Lab Sept 17"
+date: "9/17/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Download the family.csv data and read it into R
+```{r}
+# put the file path where the document is stored here. Ex: "Desktop/family.csv"
+# R looks for the file in the working directory. You can set your working directory in R Studio by going to Session > Set working directory > Choose directory.
+# if you want to get the file path of your working directory, type: getwd()
+
+## example way to read in the file: 
+family=read.csv("/Users/elizabethjump/Documents/Berkeley Fall 2018/Stat 20/Lab R Code/family.csv")
+```
+
+##### 1. Return all of the data for the female members of the family
+```{r}
+# format: filter(data frame, criteria)
+filter(family, gender == "f")
+```
+
+##### 2. Return the weights of everyone who is female or under 68 inches tall
+```{r}
+# format: select(data frame, column of interest)
+select(filter(family, gender == "f" | height < 68), weight)
+```
+
+##### 3. Return the data in the 5th row
+```{r}
+# format: slice(data frame, row of interest)
+slice(family, 5)
+```
+
+##### 4. Add a column to the dataset which is the heights converted to centimeters (multiply height in inches by 2.54). The new column should be named "heightcm".
+```{r}
+# format: mutate(data frame, column to be added)
+family = mutate(family, heightcm = height*2.54)
+
+# the 'family =' section saves the new column you've made. Without it, the mutate function just prints out the existing data frame with the new column.
+```
+
+##### 5. Return the average weight of everyone over age 50 and under age 50 (using group_by and summarise()). 
+```{r}
+# format: group_by(data frame, criteria)
+mf_group = group_by(family, age>50)
+summarise(mf_group, avg_wt = mean(weight))
+```
